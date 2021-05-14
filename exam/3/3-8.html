@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Props Sample</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 팁 : 오른쪽에서 왼쪽으로 속성을 읽으면 더 수월합니다. -->
+      <!-- 상위 컴포넌트의 msg 속성값을 하위 컴포넌트의 propsdata로 전달 -->
+      <child-component :propsdata="msg"></child-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 뷰 인스턴스의 data 속성에 정의된 msg 속성을 하위 컴포넌트에 props로 전달하여 화면에 나타냄 -->
+    <script>
+      Vue.component('child-component', {
+        props: ['propsdata'],
+        template: '<p>{{propsdata}}</p>',
+      });
+      new Vue({
+        el: '#app',
+        data: { msg: 'Hello Vue! passed from Parent Component' },
+      });
+    </script>
+  </body>
+</html>
