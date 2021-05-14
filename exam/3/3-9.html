@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Event Emit Samplement</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 하위 컴포넌트의 이벤트명=상위 컴포넌트의 메서드명 -->
+      <child-component @show-log="printText"></child-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      Vue.component('child-component', {
+        template: '<button @click="showLog">show</button>', // 버튼 요소 추가
+        methods: {
+          showLog() {
+            this.$emit('show-log'); // 이벤트 발생 로직
+          },
+        }, // 메서드 추가
+      });
+      new Vue({
+        el: '#app',
+        data: { msg: 'Hello Vue! passed from Parent Component' },
+        methods: {
+          printText() {
+            console.log('received an event');
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
